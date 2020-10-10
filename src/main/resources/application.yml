@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/article?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    password: 990327yp
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  thymeleaf:
+    cache: false
+  redis:
+    host: 127.0.0.1
+    password: 111111
+server:
+  port: 7878
+  servlet:
+    context-path: /sb_jpa_redis/

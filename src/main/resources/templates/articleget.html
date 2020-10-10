@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="|${#request.getContextPath()}/|">
+    <meta charset="UTF-8">
+    <title>文章详情</title>
+</head>
+<body>
+    <h3>文章详情</h3>
+    <a href="articletoadd">去新加</a>
+    <a href="articlequery">去查询</a>
+    <div th:text="${#request.getParameter('msg')}" th:if="${#request.getParameter('msg')} != null"></div>
+    <div th:text="${msg}" th:if="${msg} != null">
+    </div>
+    <form action="articlemod" method="post">
+        <table>
+            <tr>
+                <td>文章编号:</td>
+                <td><input name="articleId" th:value="${a.articleId}" readonly></td>
+            </tr>
+            <tr>
+                <td>文章标题:</td>
+                <td><input name="articleTitle" th:value="${a.articleTitle}"></td>
+            </tr>
+            <tr>
+                <td>发表时间:</td>
+                <td><input name="articleDt" th:value="${a.articleDt}"></td>
+            </tr>
+            <tr>
+                <td>发表内容:</td>
+                <td>
+                    <textarea name="articleContent" cols="10" rows="5" th:value="${a.articleContent}"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>发表者:</td>
+                <td>
+                    <span th:text="${a.user.uname}"></span>
+                    <input name="user.uid" type="hidden" th:value="${a.user.uid}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="修改">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

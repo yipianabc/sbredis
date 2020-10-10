@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div align="center" th:fragment="fenpage">
+    总记录条数<span th:text="${p.totalElements}"></span> 每页显示<select name="size" onchange="this.form.submit()">
+    <option value="5">5</option>
+    <option value="10" th:selected="${p.size} == 10">10</option>
+    <option value="20" th:selected="${p.size} == 20">20</option>
+    <option value="50" th:selected="${p.size} == 50">50</option>
+</select>
+    总页数:<span th:text="${p.totalPages}"></span>
+    <button onclick="toPage(0)" th:disabled="${p.first}">首页</button>
+    <button th:onclick="|toPage(${p.number}-1)|" th:disabled="${p.first}">上一页</button>
+    当前页:<input size="3" th:value="${p.number}+1" onchange="toPage(this.value-1)">
+    <input type="hidden" id="pageNum" name="page" th:value="${p.number}">
+    <button th:onclick="|toPage(${p.number}+1)|" th:disabled="${p.last}">下一页</button>
+    <button th:onclick="|toPage(${p.totalPages}-1)|" th:disabled="${p.last}">末页</button>
+    <script>
+        function toPage(num){
+            document.getElementById("pageNum").value = num;
+            document.forms[0].submit();
+        }
+    </script>
+</div>
+</body>
+</html>
